@@ -1,0 +1,59 @@
+<div class="row mt-5">
+  <div class="col-md-6" style="margin-bottom:15px">
+    <h2><i class="fa fa-users"></i>Clients</h2>
+  </div>
+  <div class="col-md-6">
+    <h5 class="d-flex justify-content-end text-muted">
+      Total Owed:<span *ngIf="uid">
+        {{ totalBalance | currency }}
+      </span>
+    </h5>
+  </div>
+</div>
+<div *ngIf="uid; else noLogin">
+  <table
+    *ngIf="clients?.length > 0; else noClients"
+    class="table table-striped"
+  >
+    <thead class="thead-dark">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Balance</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let client of clients">
+        <td>{{ client.id }}</td>
+        <td>{{ client.firstName }} {{ client.lastName }}</td>
+        <td>{{ client.email }}</td>
+        <td>{{ client.phone }}</td>
+        <td>{{ client.balance | currency }}</td>
+        <td>
+          <a
+            [routerLink]="['/client/' + client.id]"
+            href=""
+            class="btn btn-secondary btn-sm"
+            ><i class="fa fa-check-square-o"></i> Details
+          </a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-template #noClients>
+  <div class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+      <span class="sr-only">Loading...</span>
+    </div>
+  </div>
+</ng-template>
+
+<ng-template #noLogin>
+  <div class="d-flex justify-content-center mt-5">
+    <h1 class="alert alert-danger">Please Login to access</h1>
+  </div>
+</ng-template>
