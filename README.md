@@ -1,5 +1,7 @@
 # Clintpanel
 
+Client Management app for freelancer using Angular 8 and firebase. User can Login and add their clients with payment details.
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.4.
 
 ## Development server
